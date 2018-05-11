@@ -76,6 +76,12 @@ export default function install() {
 		uploadMimeTypesToAccept: cmsBrowserUploadMimeTypesToAccept,
 		uploadMaxFileSizeInBytes: cmsBrowserUploadMaxFileSizeInBytes
 	});
+	dataProviders.set('dataProviderUsingConfiguredConnectorsForAttachmentFolders', {
+			assetTypes: ['attachment'],
+			resultTypes: ['folder'],
+			rootFolderLabel: t('My drive')
+		}
+	);
 
 	uiManager.registerReactComponent('DocumentBrowserModal', DocumentBrowserModal);
 	uiManager.registerReactComponent('DocumentTemplateBrowserModal', DocumentTemplateBrowserModal);
@@ -89,4 +95,5 @@ export default function install() {
 		'OpenOrCreateDocumentModalStack',
 		OpenOrCreateDocumentModalStack
 	);
+	uiManager.registerReactComponent('AttachmentBrowserModal', AttachmentBrowserModal);
 }
