@@ -10,7 +10,8 @@ import {
 	HorizontalSeparationLine,
 	KeyValueList,
 	SpinnerIcon,
-	StateMessage
+	StateMessage,
+	ContainedImage
 } from 'fds/components';
 import { block } from 'fds/system';
 import FxImageLoader from 'fontoxml-fx/FxImageLoader.jsx';
@@ -36,7 +37,7 @@ class AttachmentPreview extends Component {
 					<Heading level="4">{selectedItem.metadata.title}</Heading>
 
 					<Flex flex="auto">
-						<img src={selectedItem.metadata.previewUrlWeb} />
+						<ContainedImage src={selectedItem.metadata.previewUrlThumbnail} />
 					</Flex>
 				</Flex>
 

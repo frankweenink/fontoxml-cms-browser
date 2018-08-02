@@ -54,7 +54,7 @@ class AttachmentListItem extends Component {
 
 		return this.wrapInListItem(
 			<Block applyCss={{ width: '.875rem', height: '.875rem' }}>
-				<ContainedImage src={item.metadata.previewUrlThumbnail} />
+				<Icon icon={item.icon || 'file-o'} size="s" />
 			</Block>,
 			<Label>{item.label}</Label>
 		);

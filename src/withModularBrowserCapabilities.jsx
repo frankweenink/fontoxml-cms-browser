@@ -196,7 +196,7 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 				});
 
 				const folderWithUploadedFile = hierarchyItems[hierarchyItems.length - 1];
-
+				
 				this.dataProvider.upload(folderWithUploadedFile.id, selectedFiles).then(
 					uploadedItem => {
 						return this.refreshItems(

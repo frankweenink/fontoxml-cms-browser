@@ -56,7 +56,7 @@ class AttachmentGridItem extends Component {
 					flexDirection="row"
 					applyCss={{ height: '3rem' }}
 				>
-					<ContainedImage src={item.metadata.previewUrlThumbnail} />
+					<Icon icon={item.icon || 'file-o'} size="m" />
 				</Flex>
 				<Label>{item.label}</Label>
 			</Flex>
