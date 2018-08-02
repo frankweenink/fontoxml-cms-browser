@@ -142,8 +142,9 @@ export default function createDataProviderUsingConfiguredConnectors(options) {
 		 * TODO: what type does this resolve to?
 		 * @return {Promise}
 		 */
-		upload: function(folderToUploadInId, filesToUpload) {
-			return upload(options, folderToUploadInId, filesToUpload);
+		upload: function (folderToUploadInId, filesToUpload) {
+			// Edu-Actief Alfresco upload without folder
+			return upload(options, null, filesToUpload);
 		},
 
 		/**
