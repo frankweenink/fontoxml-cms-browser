@@ -143,8 +143,7 @@ export default function createDataProviderUsingConfiguredConnectors(options) {
 		 * @return {Promise}
 		 */
 		upload: function (folderToUploadInId, filesToUpload) {
-			// Edu-Actief Alfresco upload without folder
-			return upload(options, null, filesToUpload);
+			return upload(options, folderToUploadInId, filesToUpload);
 		},
 
 		/**
