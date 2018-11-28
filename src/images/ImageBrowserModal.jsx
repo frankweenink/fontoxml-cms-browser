@@ -19,6 +19,7 @@ import t from 'fontoxml-localization/src/t.js';
 import ImageGridItem from './ImageGridItem.jsx';
 import ImageListItem from './ImageListItem.jsx';
 import ImagePreview from './ImagePreview.jsx';
+import ImageUploadPreview from './ImageUploadPreview.jsx';
 import ModalBrowserFileAndFolderResultList from '../shared/ModalBrowserFileAndFolderResultList.jsx';
 import ModalBrowserHierarchyBreadcrumbs from '../shared/ModalBrowserHierarchyBreadcrumbs.jsx';
 import ModalBrowserListOrGridViewMode, {
@@ -225,13 +226,18 @@ class ImageBrowserModal extends Component {
 								/>
 							</ModalContent>
 
-							{selectedItem && selectedItem.type !== 'folder' && (
+							{selectedItem &&
+							selectedItem.type !== 'folder' && (
 								<ModalContent flexDirection="column">
-									<ImagePreview
-										referrerDocumentId={this.props.data.browseContextDocumentId}
+									{selectedItem.uploaded ? (
+									  <ImageUploadPreview 
+									  	selectedItem={selectedItem}
+									  	stateLabels={stateLabels} />
+									) : (
+									  <ImagePreview
 										selectedItem={selectedItem}
-										stateLabels={stateLabels}
-									/>
+										stateLabels={stateLabels} />
+									)}
 								</ModalContent>
 							)}
 						</ModalContent>

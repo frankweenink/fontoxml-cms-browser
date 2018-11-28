@@ -153,6 +153,10 @@ export default function createDataProviderUsingConfiguredConnectors(options) {
 			return getUploadOptions(options);
 		},
 
+		getOptions: function() {
+			return options;
+		},
+
 		_lastOpenedState: { hierarchyItems: null, selectedItem: null },
 		/**
 		 * Stores the last opened hierarchyItems.

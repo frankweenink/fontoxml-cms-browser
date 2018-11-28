@@ -17,6 +17,7 @@ import t from 'fontoxml-localization/t';
 import AttachmentGridItem from './AttachmentGridItem.jsx';
 import AttachmentListItem from './AttachmentListItem.jsx';
 import AttachmentPreview from './AttachmentPreview.jsx';
+import AttachmentUploadPreview from './AttachmentUploadPreview.jsx';
 import ModalBrowserFileAndFolderResultList from '../shared/ModalBrowserFileAndFolderResultList.jsx';
 import ModalBrowserHierarchyBreadcrumbs from '../shared/ModalBrowserHierarchyBreadcrumbs.jsx';
 import ModalBrowserListOrGridViewMode, {
@@ -212,11 +213,17 @@ class AttachmentBrowserModal extends Component {
 
 							{selectedItem &&
 							selectedItem.type !== 'folder' && (
-								<ModalContent flexDirection="column">
-									<AttachmentPreview
+								<ModalContent flexDirection="column">									
+									{selectedItem.uploaded ? (
+									  <AttachmentUploadPreview
+									  	selectedItem={selectedItem}
+									  	stateLabels={stateLabels} />
+									) : (
+									  <AttachmentPreview
 										selectedItem={selectedItem}
 										stateLabels={stateLabels}
-									/>
+										/>
+									)}
 								</ModalContent>
 							)}
 						</ModalContent>

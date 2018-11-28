@@ -27,7 +27,10 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 				selectedItem: null,
 
 				// Contains information for the viewMode, for example list or grid
-				viewMode: initialViewMode
+				viewMode: initialViewMode,
+
+				// Asset folders
+				assetFolders: {}
 			};
 
 			isItemErrored = item => !!this.state.cachedErrorByRemoteId[item.id];
@@ -109,6 +112,16 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 							}
 							// Because of jump in the tree with browse context document id,
 							// the folder that is actually loaded could be different from the folderToLoad.
+
+							if (browseContextDocumentId && folderToLoad.id == null) {
+								let assetFolder = result.items.find(item => item.label === "assets");
+								if (assetFolder) {
+									this.setState(oldState => ({
+										assetFolders: Object.assign({}, oldState.assetFolders, { [browseContextDocumentId]: assetFolder })
+									}));
+								}
+							};
+
 							let newSelectedItem =
 								result.hierarchyItems[result.hierarchyItems.length - 1] ||
 								folderToLoad;
@@ -188,25 +201,16 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 					return;
 				}
 
-				this.setState({
-					request: {
-						type: 'upload',
-						busy: true
-					}
-				});
+				const folderWithUploadedFile = this.state.assetFolders[browseContextDocumentId] || hierarchyItems[hierarchyItems.length - 1];
 
-				const folderWithUploadedFile = hierarchyItems[hierarchyItems.length - 1];
-				
+				var file = selectedFiles[0]
+
 				this.dataProvider.upload(folderWithUploadedFile.id, selectedFiles).then(
-					uploadedItem => {
-						return this.refreshItems(
-							browseContextDocumentId,
-							folderWithUploadedFile,
-							true
-						).then(items => {
-							this.onItemSelect(
-								items.find(item => item.id === uploadedItem.id) || null
-							);
+					uploadedItem => {	
+						var item = Object.assign({}, uploadedItem, { uploaded: true, file: file });
+						this.onItemSelect(item);
+						this.setState({
+							request: {}
 						});
 					},
 					error => {
@@ -223,6 +227,10 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 					}
 				);
 			};
+
+			delay = (duration) => {
+				return new Promise(resolve => setTimeout(resolve, duration));
+			}
 
 			// Used to update the viewMode
 			onViewModeChange = viewMode =>
