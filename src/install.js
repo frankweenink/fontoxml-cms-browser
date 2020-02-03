@@ -77,6 +77,15 @@ export default function install() {
 		uploadMimeTypesToAccept: cmsBrowserUploadMimeTypesToAccept,
 		uploadMaxFileSizeInBytes: cmsBrowserUploadMaxFileSizeInBytes
 	});
+	dataProviders.set('dataProviderUsingConfiguredConnectorsForAttachments', {
+			assetTypes: ['attachment'],
+			resultTypes: ['file', 'folder'],
+			rootFolderLabel: t('Attachments'),
+			uploadAssetType: 'file',
+			uploadMimeTypesToAccept: "application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/acad,image/vnd.dwg,image/x-dwg,drawing/x-dwf,model/vnd.dwf,model/vnd.dwfx,application/excel,application/vnd.ms-excel,application/x-excel,application/x-msexcel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/mspowerpoint,application/powerpoint,application/vnd.ms-powerpoint,application/x-mspowerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf,application/rtf,application/x-rtf,text/richtext,application/xml,text/xml,application/x-compressed,application/x-zip-compressed,application/zip,multipart/x-zip",
+			uploadMaxFileSizeInBytes: cmsBrowserUploadMaxFileSizeInBytes
+		}
+	);
 	dataProviders.set('dataProviderUsingConfiguredConnectorsForAttachmentFolders', {
 			assetTypes: ['attachment'],
 			resultTypes: ['folder'],
