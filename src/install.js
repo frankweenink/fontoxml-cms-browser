@@ -12,6 +12,7 @@ import DocumentWithLinkSelectorBrowserModal from './documents/DocumentWithLinkSe
 import ImageBrowserModal from './images/ImageBrowserModal.jsx';
 import CreateDocumentModalStack from './stacks/CreateDocumentModalStack.jsx';
 import OpenOrCreateDocumentModalStack from './stacks/OpenOrCreateDocumentModalStack.jsx';
+import AttachmentBrowserModal from './attachments/AttachmentBrowserModal.jsx';
 
 const cmsBrowserUploadMimeTypesToAccept = configurationManager.get(
 	'cms-browser-upload-mime-types-to-accept'
@@ -79,7 +80,7 @@ export default function install() {
 	dataProviders.set('dataProviderUsingConfiguredConnectorsForAttachmentFolders', {
 			assetTypes: ['attachment'],
 			resultTypes: ['folder'],
-			rootFolderLabel: t('My drive')
+			rootFolderLabel: t('Image library')
 		}
 	);
 

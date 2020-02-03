@@ -87,12 +87,7 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 			};
 
 			// Used to update the items with a browse callback
-			refreshItems = (
-				browseContextDocumentId,
-				folderToLoad,
-				noCache,
-				hierarchyItems = this.state.hierarchyItems
-			) => {
+			refreshItems = (browseContextDocumentId, folderToLoad, noCache) => {
 				const { determineAndHandleSubmitButtonDisabledState } = this.props;
 				if (this.isMountedInDOM) {
 					this.setState({ request: { type: 'browse', busy: true } });
@@ -103,7 +98,7 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 						browseContextDocumentId,
 						folderToLoad,
 						noCache,
-						hierarchyItems
+						this.state.hierarchyItems
 					)
 					.then(
 						result => {
@@ -114,13 +109,17 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 							// the folder that is actually loaded could be different from the folderToLoad.
 
 							if (browseContextDocumentId && folderToLoad.id == null) {
-								let assetFolder = result.items.find(item => item.label === "assets");
+								let assetFolder = result.items.find(
+									item => item.label === 'assets'
+								);
 								if (assetFolder) {
 									this.setState(oldState => ({
-										assetFolders: Object.assign({}, oldState.assetFolders, { [browseContextDocumentId]: assetFolder })
+										assetFolders: Object.assign({}, oldState.assetFolders, {
+											[browseContextDocumentId]: assetFolder
+										})
 									}));
 								}
-							};
+							}
 
 							let newSelectedItem =
 								result.hierarchyItems[result.hierarchyItems.length - 1] ||
@@ -201,12 +200,14 @@ export default function withModularBrowserCapabilities(initialViewMode = null) {
 					return;
 				}
 
-				const folderWithUploadedFile = this.state.assetFolders[browseContextDocumentId] || hierarchyItems[hierarchyItems.length - 1];
+				const folderWithUploadedFile =
+					this.state.assetFolders[browseContextDocumentId] ||
+					hierarchyItems[hierarchyItems.length - 1];
 
-				var file = selectedFiles[0]
+				var file = selectedFiles[0];
 
 				this.dataProvider.upload(folderWithUploadedFile.id, selectedFiles).then(
-					uploadedItem => {	
+					uploadedItem => {
 						var item = Object.assign({}, uploadedItem, { uploaded: true, file: file });
 						this.onItemSelect(item);
 						this.setState({

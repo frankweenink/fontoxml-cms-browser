@@ -235,6 +235,7 @@ class ImageBrowserModal extends Component {
 									  	stateLabels={stateLabels} />
 									) : (
 									  <ImagePreview
+									  	browseContextDocumentId={browseContextDocumentId}
 										selectedItem={selectedItem}
 										stateLabels={stateLabels} />
 									)}
