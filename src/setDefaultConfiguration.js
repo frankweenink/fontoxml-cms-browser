@@ -32,5 +32,5 @@ export default function setDefaultConfiguration() {
 	 * @const  {number}  cms-browser-upload-max-file-size-in-bytes
 	 * @category  add-on/fontoxml-cms-browser
 	 */
-	configurationManager.setDefault('cms-browser-upload-max-file-size-in-bytes', 4194304);
+	configurationManager.setDefault('cms-browser-upload-max-file-size-in-bytes', 12000000);
 }
